@@ -24,10 +24,10 @@ func init() {
 	}
 
 	if _,err := os.Stat("./erpass.key"); err == nil {
-		Installed = false
+		Installed = true
 	} else {
 		log.Println("[warning]: erpass.key is not installed.")
-		Installed = true
+		Installed = false
 	}
 }
 
@@ -35,7 +35,7 @@ func restore() {
 	if err := data.RestoreAssets("./", "static"); err != nil {
 		log.Println("[error]: Resotre static files failed.")
 	}
-	
+
 	if err := data.RestoreAssets("./", "templates"); err != nil {
 		log.Println("[error]: Resotre template files failed.")
     }
@@ -55,7 +55,8 @@ func main()  {
 
 	staticFileHandle := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", staticFileHandle))
-
+	http.HandleFunc("/", rootHandle)
+	http.HandleFunc("/gen", generateSecretKeyHandle)
 	log.Printf("[info]: erpass server starting. Listening %s:%s\n",*host,*port);
     if err := http.ListenAndServe(*host+":"+*port, nil); err != nil {
         log.Printf("[error]: erpass server failed to start.")

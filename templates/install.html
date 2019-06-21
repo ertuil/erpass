@@ -1,0 +1,39 @@
+{{template "header" .}} 
+{{template "title" .}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <div class="card" style="border-radius: 0;width: 80%;">
+            <div class="card-header">
+                Initialization
+            </div>
+            <div class="container">
+                <form method="POST" action="import">
+
+                    <br/>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" style="border-radius: 0;">
+                        <div class="input-group-prepend" style="border-radius: 0;">
+                            <button class="btn btn-primary btn-block" type="submit">Import</button>
+                        </div>
+                    </div>
+                    <br/>
+                </form> 
+
+                <button type="button"  class="btn btn-success btn-block" 
+                        style="border-radius: 0;" 
+                        onclick="javascript:window.location.href='/gen'">
+                        Generate Secret Key
+                </button>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+      <h3>Now installation is requested.</h3>
+    </div>
+  </div>
+</div>
+
+{{template "footer" .}} 

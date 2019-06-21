@@ -1,5 +1,5 @@
 build:
-	make clean && make darwin && make test
+	make static && make darwin && make test
 
 .PHONY:clean static darwin test linux windows all 
 
@@ -19,7 +19,7 @@ windows:
 	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/erpass-windows-amd64.exe ./src 
 
 all:
-	make clean && make darwin && make linux && make windows
+	make darwin && make linux && make windows
 
 clean:
 	rm -r bin/*
