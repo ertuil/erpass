@@ -3,11 +3,14 @@ package main
 import (
 	"log"
 	"os"
+	"flag"
+	"net/http"
 	"erpass/src/data"
 )
 var (
 	//Installed if the erpass.key is existed.
 	Installed bool
+	ip string
 )
 
 func init() {
@@ -31,10 +34,30 @@ func init() {
 func restore() {
 	if err := data.RestoreAssets("./", "static"); err != nil {
 		log.Println("[error]: Resotre static files failed.")
+	}
+	
+	if err := data.RestoreAssets("./", "templates"); err != nil {
+		log.Println("[error]: Resotre template files failed.")
     }
 }
 
+func parserCommand() (*string,*string) {
+	host := flag.String("host", "127.0.0.1", "HTTP listen IP address.")
+	port := flag.String("port", "8080", "HTTP listen port")
+	
+	flag.Parse()
+
+	return host,port
+}
+
 func main()  {
-	log.Println("[info]: erpass server started");
-	restore();
+	host,port := parserCommand()
+
+	staticFileHandle := http.FileServer(http.Dir("./static"))
+	http.Handle("/static/", http.StripPrefix("/static/", staticFileHandle))
+
+	log.Printf("[info]: erpass server starting. Listening %s:%s\n",*host,*port);
+    if err := http.ListenAndServe(*host+":"+*port, nil); err != nil {
+        log.Printf("[error]: erpass server failed to start.")
+    }
 }

@@ -22,6 +22,7 @@
 // static/js/bootstrap.min.js
 // static/js/bootstrap.min.js.map
 // static/js/clipboard.min.js
+// templates/base.tmpl
 // DO NOT EDIT!
 
 package data
@@ -529,6 +530,26 @@ func staticJsClipboardMinJs() (*asset, error) {
 	return a, nil
 }
 
+var _templatesBaseTmpl = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xb2\xc9\x28\xc9\xcd\xb1\xe3\xb2\xc9\x48\x4d\x4c\xb1\xb3\xd1\x07\x53\x5c\x36\x49\xf9\x29\x95\x76\x5c\x0a\x0a\x0a\x0a\x5c\x36\xfa\x10\x8e\x8d\x3e\x58\x25\x20\x00\x00\xff\xff\x33\x36\x62\x57\x30\x00\x00\x00")
+
+func templatesBaseTmplBytes() ([]byte, error) {
+	return bindataRead(
+		_templatesBaseTmpl,
+		"templates/base.tmpl",
+	)
+}
+
+func templatesBaseTmpl() (*asset, error) {
+	bytes, err := templatesBaseTmplBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "templates/base.tmpl", size: 48, mode: os.FileMode(420), modTime: time.Unix(1561114886, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -603,6 +624,7 @@ var _bindata = map[string]func() (*asset, error){
 	"static/js/bootstrap.min.js": staticJsBootstrapMinJs,
 	"static/js/bootstrap.min.js.map": staticJsBootstrapMinJsMap,
 	"static/js/clipboard.min.js": staticJsClipboardMinJs,
+	"templates/base.tmpl": templatesBaseTmpl,
 }
 
 // AssetDir returns the file names below a certain
@@ -672,6 +694,9 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"bootstrap.min.js.map": &bintree{staticJsBootstrapMinJsMap, map[string]*bintree{}},
 			"clipboard.min.js": &bintree{staticJsClipboardMinJs, map[string]*bintree{}},
 		}},
+	}},
+	"templates": &bintree{nil, map[string]*bintree{
+		"base.tmpl": &bintree{templatesBaseTmpl, map[string]*bintree{}},
 	}},
 }}
 
