@@ -57,6 +57,7 @@ func main()  {
 	http.Handle("/static/", http.StripPrefix("/static/", staticFileHandle))
 	http.HandleFunc("/", rootHandle)
 	http.HandleFunc("/gen", generateSecretKeyHandle)
+	http.HandleFunc("/import", importHandle)
 	log.Printf("[info]: erpass server starting. Listening %s:%s\n",*host,*port);
     if err := http.ListenAndServe(*host+":"+*port, nil); err != nil {
         log.Printf("[error]: erpass server failed to start.")

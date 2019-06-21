@@ -30,6 +30,7 @@ func indexHandle(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// generate a new secret key page
 func generateSecretKeyHandle(w http.ResponseWriter, r *http.Request) {
 	if(Installed)  {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
@@ -40,6 +41,23 @@ func generateSecretKeyHandle(w http.ResponseWriter, r *http.Request) {
 		Installed = true
 	}
 
+	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+}
+
+// import a key handle
+func importHandle(w http.ResponseWriter, r *http.Request) {
+	if(Installed)  {
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+	
+	r.ParseForm()
+	secretKey := r.Form["secret"][0]
+	ret := writeSecretKey(secretKey)
+
+	if (ret == true) {
+		Installed = true
+	}
 	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 }
 

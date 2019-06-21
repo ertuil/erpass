@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"io"
+	"strings"
 	"io/ioutil"
 	"strconv"
 	"crypto/sha256"
@@ -22,6 +23,21 @@ func generateSecretKey() bool {
 	token := fmt.Sprintf("%x", h.Sum(nil)) 
 	log.Println("[warning]:Gernerate a secret key:",token);
 	return writeSecretKey(token)
+}
+
+func importSecretKey(sk string) bool {
+	sk = strings.ToLower(sk)
+	if len(sk) != 64 {
+		return false
+	} 
+	for _,c := range(sk) {
+		if  ((c >= '0'  && c <='9') ||  ( c >= 'a' && c <='f')) {
+			continue
+		} else {
+			return false
+		}
+	}
+	return true;
 }
 
 func writeSecretKey(sk string) bool {
