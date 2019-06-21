@@ -12,6 +12,7 @@
                 <form method="POST" action="import">
 
                     <br/>
+                    <br/>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" style="border-radius: 0;" name="secret">
                         <div class="input-group-prepend" style="border-radius: 0;">
@@ -31,7 +32,20 @@
         </div>
     </div>
     <div class="col-sm">
-      <h3>Now installation is requested.</h3>
+        <!-- <div class="container"> -->
+            <h3 class="display-4">Installation</h3>
+            <p class="display-5">
+                A secret key is used as a factor to generate passwords. 
+                With different secret keys, erpass server is supposed to generate different passwords 
+                even thought master keys and options are the same.
+                It should be generated when erpass is starting or be imported from another erpass server 
+                if you want to generate the same password. 
+            </p>
+            <p>
+                The generator makes use of timestamps and SHA-256 to produce a new secret key which means 
+                a secret should be a 64 bytes string looks like 4355a4...0f3c9ee954a27460dd865.
+            </p>
+        <!-- </div> -->
     </div>
   </div>
 </div>
