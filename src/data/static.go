@@ -124,7 +124,7 @@ func staticCssBootstrapGridCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-grid.css", size: 64548, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-grid.css", size: 64548, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -144,7 +144,7 @@ func staticCssBootstrapGridCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-grid.css.map", size: 151749, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-grid.css.map", size: 151749, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -164,7 +164,7 @@ func staticCssBootstrapGridMinCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-grid.min.css", size: 48488, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-grid.min.css", size: 48488, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -184,7 +184,7 @@ func staticCssBootstrapGridMinCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-grid.min.css.map", size: 108539, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-grid.min.css.map", size: 108539, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -204,7 +204,7 @@ func staticCssBootstrapRebootCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-reboot.css", size: 4897, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-reboot.css", size: 4897, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -224,7 +224,7 @@ func staticCssBootstrapRebootCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-reboot.css.map", size: 76483, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-reboot.css.map", size: 76483, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -244,7 +244,7 @@ func staticCssBootstrapRebootMinCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-reboot.min.css", size: 4021, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-reboot.min.css", size: 4021, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -264,7 +264,7 @@ func staticCssBootstrapRebootMinCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap-reboot.min.css.map", size: 32461, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap-reboot.min.css.map", size: 32461, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -284,7 +284,7 @@ func staticCssBootstrapCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap.css", size: 192348, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap.css", size: 192348, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -304,7 +304,7 @@ func staticCssBootstrapCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap.css.map", size: 492048, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap.css.map", size: 492048, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -324,7 +324,7 @@ func staticCssBootstrapMinCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap.min.css", size: 155758, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap.min.css", size: 155758, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -344,7 +344,7 @@ func staticCssBootstrapMinCssMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/css/bootstrap.min.css.map", size: 625953, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/css/bootstrap.min.css.map", size: 625953, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -364,7 +364,7 @@ func staticJsBootstrapBundleJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.bundle.js", size: 222911, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.bundle.js", size: 222911, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -384,7 +384,7 @@ func staticJsBootstrapBundleJsMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.bundle.js.map", size: 402249, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.bundle.js.map", size: 402249, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -404,7 +404,7 @@ func staticJsBootstrapBundleMinJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.bundle.min.js", size: 78635, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.bundle.min.js", size: 78635, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -424,7 +424,7 @@ func staticJsBootstrapBundleMinJsMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.bundle.min.js.map", size: 311949, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.bundle.min.js.map", size: 311949, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -444,7 +444,7 @@ func staticJsBootstrapJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.js", size: 131637, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.js", size: 131637, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -464,7 +464,7 @@ func staticJsBootstrapJsMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.js.map", size: 250568, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.js.map", size: 250568, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -484,7 +484,7 @@ func staticJsBootstrapMinJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.min.js", size: 58072, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.min.js", size: 58072, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -504,7 +504,7 @@ func staticJsBootstrapMinJsMap() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/bootstrap.min.js.map", size: 190253, mode: os.FileMode(420), modTime: time.Unix(1550047670, 0)}
+	info := bindataFileInfo{name: "static/js/bootstrap.min.js.map", size: 190253, mode: os.FileMode(420), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -524,7 +524,7 @@ func staticJsClipboardMinJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "static/js/clipboard.min.js", size: 10754, mode: os.FileMode(493), modTime: time.Unix(1555568628, 0)}
+	info := bindataFileInfo{name: "static/js/clipboard.min.js", size: 10754, mode: os.FileMode(493), modTime: time.Unix(1561109960, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
