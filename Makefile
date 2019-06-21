@@ -22,4 +22,4 @@ all:
 	make darwin && make linux && make windows
 
 clean:
-	rm -r bin/*
+	rm -r bin/static bin/templates bin/erpass-*
