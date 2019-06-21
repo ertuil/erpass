@@ -1,1 +1,2 @@
-go build -o bin/erpass src/main.go
+go-bindata -o src/data/static.go -pkg data static/...
+go build -o bin/erpass ./src
