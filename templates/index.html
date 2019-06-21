@@ -2,7 +2,7 @@
 {{template "title" .}}
 <div class="container">
   <div class="row">
-      <div class="col-md">
+      <div class="col-md-8">
           <div class="card" style="border-radius: 0;">
               <div class="card-header">
                   <span class="font-weight-bold">Generator</span>
@@ -14,7 +14,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="border-radius: 0;">Master Key</span>
                     </div>
-                    <input class="form-control" name="master" style="border-radius: 0;"/>
+                    <input class="form-control" name="master" id="master"
+                          style="border-radius: 0;" placeholder="Your master key"/>
                   </div>
 
                   <br />
@@ -22,7 +23,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="border-radius: 0;">Account</span>
                     </div>
-                    <input class="form-control" name="account" style="border-radius: 0;" placeholder="Website and your account"/>
+                    <input class="form-control" name="account" id="account"
+                          style="border-radius: 0;" placeholder="Website and your account"/>
                   </div>
 
                   <br />
@@ -30,17 +32,65 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="border-radius: 0;">Styles</span>
                     </div>
-                    <select class="form-control" name="style" style="border-radius: 0px;" placeholder="Website and your account">
-                        <option value="0" >Combine alpha and number</option>
+                    <select multiple class="form-control" name="style" id="style"
+                            style="border-radius: 0px;height: 40px;" placeholder="Website and your account">
+                        <option value="0" selected>Combine alpha and number</option>
                         <option value="1" >Combine alpha, number and symbols</option>
                         <option value="2" >Pin Code</option>
                     </select>
                   </div>
 
                   <br />
-                  <div>
+                  <div class="form-row">
+                      <div class="col">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" style="border-radius: 0;">Length</span>
+                          </div>
+                          <select multiple class="form-control" id="length"
+                                  style="border-radius: 0;height:50px;" name="length">
+                            <option selected>16</option>
+                            <option>6</option>
+                            <option>8</option>
+                            <option>10</option>
+                            <option>12</option>
+                            <option>14</option>
+                            <option>18</option>
+                            <option>20</option>
+                            <option>24</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col">
+                          <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" style="border-radius: 0;">Count</span>
+                              </div>
+                              <select multiple class="form-control" id="count"
+                                      style="border-radius: 0;height:50px;" name="count">
+                                <option selected>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                              </select>
+                            </div>
+                      </div>
                   </div>
+                  <br />
+
+                  <button type="button"  class="btn btn-success btn-block" 
+                    style="border-radius: 0;" 
+                    onclick="generatePassword()">
+                    Generate
+                  </button>
+
+                  <br/>
                 </form>
+                <div id="myDiv"></div>
               </div>
           </div>
       </div>
@@ -48,4 +98,27 @@
   </div>
 </div>
 
+<script>
+  function generatePassword() {
+    var obj = {}
+    obj['mk'] = document.getElementById("master").value || "";
+    obj['account'] = document.getElementById("account").value || "";
+    obj['len'] = document.getElementById("length").value;
+    obj['style'] = document.getElementById("style").value;
+    obj['count'] = document.getElementById("count").value;
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("POST","/pass",true);
+    xmlhttp.setRequestHeader("Content-type","application/json");
+
+    xmlhttp.onreadystatechange=function(){
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+      }
+    }
+
+    xmlhttp.send(JSON.stringify(obj));
+  }
+</script>
 {{template "footer" .}} 

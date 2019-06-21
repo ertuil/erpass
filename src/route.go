@@ -2,7 +2,9 @@ package main
 
 import (
 	"log"
+	"io/ioutil"
 	"net/http"
+	"encoding/json"
 	"html/template"
 )
 
@@ -59,6 +61,18 @@ func importHandle(w http.ResponseWriter, r *http.Request) {
 		Installed = true
 	}
 	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+}
+
+func passHandle(w http.ResponseWriter, r *http.Request) {
+	result, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		r.Response.StatusCode = 500;
+		return 
+	}
+	js := make(map[string]string)
+	json.Unmarshal(result,&js)
+	log.Println(js)
+	w.Write([]byte(js["account"]))
 }
 
 // Index page

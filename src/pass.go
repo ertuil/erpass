@@ -59,7 +59,11 @@ func writeSecretKey(sk string) bool {
 func readSecretKey() string{
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
-		log.Println("[error]:Can not read file %v",filename)
+		log.Println("[error]:Can not read file ",filename)
 	}
 	return string(b)
+}
+
+func generatePassword(info map[string]string) {
+
 }
