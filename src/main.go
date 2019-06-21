@@ -6,6 +6,7 @@ import (
 	"erpass/src/data"
 )
 var (
+	//Installed if the erpass.key is existed.
 	Installed bool
 )
 
