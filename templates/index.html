@@ -103,7 +103,7 @@
     var obj = {}
     obj['mk'] = document.getElementById("master").value || "";
     obj['account'] = document.getElementById("account").value || "";
-    obj['len'] = document.getElementById("length").value;
+    obj['length'] = document.getElementById("length").value;
     obj['style'] = document.getElementById("style").value;
     obj['count'] = document.getElementById("count").value;
 
@@ -114,6 +114,7 @@
 
     xmlhttp.onreadystatechange=function(){
       if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          console.log(xmlhttp.responseText);
           document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
       }
     }

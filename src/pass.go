@@ -10,7 +10,7 @@ import (
 	"io/ioutil"
 	"strconv"
 	"crypto/sha256"
-	"encoding/base64"
+	"encoding/binary"
 	"golang.org/x/crypto/pbkdf2"
 )
 
@@ -68,6 +68,11 @@ func readSecretKey() string{
 }
 
 func generatePassword(info map[string]string) string {
+	lru := []string{
+		"abcdefjhigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+		"abcdefjhigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-=_+[]{}<>,.",
+		"0123456789",
+		}
     pwd := []byte(info["mk"] + info["account"] + info["count"])
     salt := []byte(readSecretKey())
     iterations := 15000
@@ -75,7 +80,33 @@ func generatePassword(info map[string]string) string {
 
     dk := pbkdf2.Key(pwd, salt, iterations, 64, digest)
 
-	str := base64.URLEncoding.EncodeToString(dk)
-	
+	//str := base64.URLEncoding.EncodeToString(dk)
+	st,err := strconv.Atoi(info["style"])
+	if err != nil {
+		st = 0
+	}
+
+	length,err := strconv.Atoi(info["length"])
+	if err != nil {
+		length = 16
+	}
+
+	str := remapPassword(lru[st],dk,length)
     return str
+}
+
+func remapPassword(charset string, raw []byte, length int) string {
+	rawInt := make([]uint16,0)
+	ansByte := make([]byte,0)
+
+	for i := 0; i+1 < len(raw); i = i+2 {
+		tmp := raw[i:i+2]
+		rawInt = append(rawInt, binary.BigEndian.Uint16(tmp))
+	}
+	for _,cc := range(rawInt) {
+		idx := int(cc) % len(charset)
+		ansByte = append(ansByte, charset[idx])
+	}
+
+	return string(ansByte)[0:length]
 }
