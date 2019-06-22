@@ -6,6 +6,7 @@
           <div class="card" style="border-radius: 0;">
               <div class="card-header">
                   <span class="font-weight-bold">Generator</span>
+
               </div>
               <div class="container">
                 <form>
@@ -90,15 +91,37 @@
 
                   <br/>
                 </form>
-                <div id="myDiv"></div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" 
+                            placeholder="" id="foo" style="border-radius: 0px;">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-primary" data-clipboard-target="#foo"
+                                type="button" id="foo-btn">Copy</button>
+                    </div>
+                </div>
               </div>
           </div>
       </div>
-      <div class="col-md">444</div>
+      <div class="col-md">
+          <h3 class="display-4">New Password</h3>
+          <p class="display-5">
+            Generate a new password and copy it, it is easy to use.
+
+            Master Key is an import parameter to generate a derived password.
+            KEEP IT IN YOUR MIND. 
+            
+            OPTIONS is website and your account.
+
+            For more information, please check DOC page.
+          </p>
+      </div>
   </div>
 </div>
 
 <script>
+  var clip = new ClipboardJS('#foo-btn');
+
   function generatePassword() {
     var obj = {}
     obj['mk'] = document.getElementById("master").value || "";
@@ -114,8 +137,7 @@
 
     xmlhttp.onreadystatechange=function(){
       if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-          console.log(xmlhttp.responseText);
-          document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+          document.getElementById("foo").value=xmlhttp.responseText;
       }
     }
 
