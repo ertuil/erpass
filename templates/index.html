@@ -16,7 +16,11 @@
                         <span class="input-group-text" style="border-radius: 0;">Master Key</span>
                     </div>
                     <input class="form-control" name="master" id="master" oninput="generatePassword()" onporpertychange="generatePassword()"
-                          style="border-radius: 0;" placeholder="Your master key"/>
+                           type="password" style="border-radius: 0;" placeholder="Your master key"/>
+                    <div class="input-group-prepend">
+                      <button class="btn btn-success" onclick="checkMaster()"
+                                type="button" id="master-chk">Check</button>
+                    </div>
                   </div>
 
                   <br />
@@ -129,7 +133,7 @@
 <script>
   var clip = new ClipboardJS('#foo-btn');
   var state = false;
-
+  var mastate = false;
   function generatePassword() {
     var obj = {}
     obj['mk'] = document.getElementById("master").value || "";
@@ -161,6 +165,17 @@
     } else {
       fol.type = "password"
       state = false;
+    }
+  }
+
+  function checkMaster(){
+    var master = document.getElementById("master");
+    if(mastate == false) {
+      master.type = "text"
+      mastate = true;
+    } else {
+      master.type = "password"
+      mastate = false;
     }
   }
 </script>
