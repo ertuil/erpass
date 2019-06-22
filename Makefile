@@ -4,7 +4,7 @@ build:
 .PHONY:clean static darwin test linux windows all 
 
 static:
-	go-bindata -o src/data/static.go -pkg data static/... templates/...
+	go-bindata -o src/data/static.go -pkg data static/... templates/... ReadMe.md
 
 darwin:
 	go build -o bin/erpass-darwin ./src 

@@ -38,6 +38,10 @@ func restore() {
 
 	if err := data.RestoreAssets("./", "templates"); err != nil {
 		log.Println("[error]: Resotre template files failed.")
+	}
+	
+	if err := data.RestoreAssets("./", "ReadMe.md"); err != nil {
+		log.Println("[error]: Resotre readme files failed.")
     }
 }
 
