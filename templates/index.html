@@ -93,11 +93,15 @@
                 </form>
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" 
+                    <input type="password" class="form-control" 
                             placeholder="" id="foo" style="border-radius: 0px;">
                     <div class="input-group-prepend">
-                        <button class="btn btn-primary" data-clipboard-target="#foo"
+                        <!-- <button class="btn btn-primary" data-clipboard-target="#foo"
+                                type="button" id="foo-btn">Copy</button> -->
+                        <button class="btn btn-primary" data-clipboard-text=""
                                 type="button" id="foo-btn">Copy</button>
+                        <button class="btn btn-success" onclick="checkPassword()"
+                                type="button" id="foo-chk">Check</button>
                     </div>
                 </div>
               </div>
@@ -124,6 +128,7 @@
 
 <script>
   var clip = new ClipboardJS('#foo-btn');
+  var state = false;
 
   function generatePassword() {
     var obj = {}
@@ -141,10 +146,22 @@
     xmlhttp.onreadystatechange=function(){
       if (xmlhttp.readyState==4 && xmlhttp.status==200) {
           document.getElementById("foo").value=xmlhttp.responseText;
+          document.getElementById("foo-btn").setAttribute("data-clipboard-text",xmlhttp.responseText);
       }
     }
 
     xmlhttp.send(JSON.stringify(obj));
+  }
+
+  function checkPassword(){
+    var fol = document.getElementById("foo");
+    if(state == false) {
+      fol.type = "text"
+      state = true;
+    } else {
+      fol.type = "password"
+      state = false;
+    }
   }
 </script>
 {{template "footer" .}} 
