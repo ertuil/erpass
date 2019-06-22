@@ -15,7 +15,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="border-radius: 0;">Master Key</span>
                     </div>
-                    <input class="form-control" name="master" id="master"
+                    <input class="form-control" name="master" id="master" oninput="generatePassword()" onporpertychange="generatePassword()"
                           style="border-radius: 0;" placeholder="Your master key"/>
                   </div>
 
@@ -24,7 +24,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="border-radius: 0;">Account</span>
                     </div>
-                    <input class="form-control" name="account" id="account"
+                    <input class="form-control" name="account" id="account" oninput="generatePassword()" onporpertychange="generatePassword()"
                           style="border-radius: 0;" placeholder="Website and your account"/>
                   </div>
 
@@ -33,7 +33,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="border-radius: 0;">Styles</span>
                     </div>
-                    <select multiple class="form-control" name="style" id="style"
+                    <select multiple class="form-control" name="style" id="style" oninput="generatePassword()" onporpertychange="generatePassword()"
                             style="border-radius: 0px;height: 40px;" placeholder="Website and your account">
                         <option value="0" selected>Combine alpha and number</option>
                         <option value="1" >Combine alpha, number and symbols</option>
@@ -48,7 +48,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" style="border-radius: 0;">Length</span>
                           </div>
-                          <select multiple class="form-control" id="length"
+                          <select multiple class="form-control" id="length" oninput="generatePassword()" onporpertychange="generatePassword()"
                                   style="border-radius: 0;height:50px;" name="length">
                             <option selected>16</option>
                             <option>6</option>
@@ -67,7 +67,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text" style="border-radius: 0;">Count</span>
                               </div>
-                              <select multiple class="form-control" id="count"
+                              <select multiple class="form-control" id="count" oninput="generatePassword()" onporpertychange="generatePassword()"
                                       style="border-radius: 0;height:50px;" name="count">
                                 <option selected>1</option>
                                 <option>2</option>
