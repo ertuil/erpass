@@ -10,6 +10,8 @@ import (
 	"io/ioutil"
 	"strconv"
 	"crypto/sha256"
+	"encoding/base64"
+	"golang.org/x/crypto/pbkdf2"
 )
 
 const(
@@ -60,10 +62,20 @@ func readSecretKey() string{
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
 		log.Println("[error]:Can not read file ",filename)
+		return ""
 	}
 	return string(b)
 }
 
-func generatePassword(info map[string]string) {
+func generatePassword(info map[string]string) string {
+    pwd := []byte(info["mk"] + info["account"] + info["count"])
+    salt := []byte(readSecretKey())
+    iterations := 15000
+    digest := sha256.New
 
+    dk := pbkdf2.Key(pwd, salt, iterations, 64, digest)
+
+	str := base64.URLEncoding.EncodeToString(dk)
+	
+    return str
 }

@@ -71,8 +71,7 @@ func passHandle(w http.ResponseWriter, r *http.Request) {
 	}
 	js := make(map[string]string)
 	json.Unmarshal(result,&js)
-	log.Println(js)
-	w.Write([]byte(js["account"]))
+	w.Write([]byte(generatePassword(js)))
 }
 
 // Index page
