@@ -11,6 +11,7 @@ Copyright @ 2019, ertuil. Released under the MIT license.
 
 # Installation
 
+## From Code
 1. Git clone this repo.
 2. Install Golang and Make.
 3. (Optional) if you want to generate a new static package, Install go-bindata and run `make static`
@@ -19,6 +20,15 @@ Copyright @ 2019, ertuil. Released under the MIT license.
 6. Open page with your browser.
 7. Generate a new Secret Key or import one.(Key it safe, never lose it).
 8. (Optional) Backup the SecretKey and keep it safe.
+
+## Prebuild
+
+1. Download the prebuild binary in the release page.
+2. run `erpass-* --host 0.0.0.0 --port 80` (could be erpass-linux or erpass-windows.exe) 
+3. Open page with your browser.
+4. Generate a new Secret Key or import one.(Key it safe, never lose it).
+5. (Optional) Backup the SecretKey and keep it safe.
+
 
 # How to gererate a new password
 
