@@ -55,7 +55,7 @@ func importHandle(w http.ResponseWriter, r *http.Request) {
 	
 	r.ParseForm()
 	secretKey := r.Form["secret"][0]
-	ret := writeSecretKey(secretKey)
+	ret := importSecretKey(secretKey)
 
 	if (ret == true) {
 		Installed = true

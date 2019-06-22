@@ -39,6 +39,7 @@ func importSecretKey(sk string) bool {
 			return false
 		}
 	}
+	writeSecretKey(sk)
 	return true;
 }
 
