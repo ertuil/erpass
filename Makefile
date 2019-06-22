@@ -10,7 +10,7 @@ darwin:
 	go build -o bin/erpass-darwin ./src 
 
 test:
-	cd bin && ./erpass-darwin --host 127.0.0.1 --port 8080
+	cd bin && ./erpass-darwin -d true --host 127.0.0.1 --port 8080
 
 linux:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/erpass-linux-amd64 ./src 
@@ -22,4 +22,4 @@ all:
 	make darwin && make linux && make windows
 
 clean:
-	rm -r bin/static bin/templates bin/erpass-*
+	rm -r bin/static bin/templates bin/erpass-* bin/erpass.log

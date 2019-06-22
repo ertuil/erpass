@@ -1,0 +1,4 @@
+2019/06/22 main.go:29: [warning]: erpass.key is not installed.
+2019/06/22 main.go:96: [info]: erpass server starting. Listening 0.0.0.0:8080
+2019/06/22 main.go:29: [warning]: erpass.key is not installed.
+2019/06/22 main.go:96: [info]: erpass server starting. Listening 127.0.0.1:8080

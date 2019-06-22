@@ -83,3 +83,12 @@ func rootHandle(w http.ResponseWriter, r *http.Request) {
 		indexHandle(w,r)
 	}
 }
+
+func docHandle(w http.ResponseWriter, r *http.Request) {
+	rd,err := ioutil.ReadFile("./ReadMe.md")
+	if err != nil {
+		log.Println("[error]: Can not read ReadMe.md in docHandle")
+	}
+
+	w.Write(rd);
+}

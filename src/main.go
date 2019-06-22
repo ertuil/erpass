@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"flag"
 	"net/http"
 	"erpass/src/data"
@@ -13,9 +15,7 @@ var (
 	ip string
 )
 
-func init() {
-	// Set log format
-	log.SetFlags(log.Ldate|log.Lshortfile)
+func initServer() {
 
 	// check release
 	if _,err := os.Stat("./static"); err != nil {
@@ -45,21 +45,67 @@ func restore() {
     }
 }
 
-func parserCommand() (*string,*string) {
+func getUsage(){
+	st := `Erpass: A simple but security password generator.
+Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>]
+	--d    run app as a daemon with -d=true or -d true.
+	--host string
+		  HTTP listen IP address. (default "127.0.0.1")
+	--log string
+		  Log file (default "erpass.log")
+	--port string
+		  HTTP listen port (default "8080")
+	-h/--help Show this help.
+	`
+	fmt.Println(st)
+}
+
+func parserCommand() (*string,*string,*string, bool) {
+	flag.Usage = getUsage
+	
 	host := flag.String("host", "127.0.0.1", "HTTP listen IP address.")
 	port := flag.String("port", "8080", "HTTP listen port")
-	
-	flag.Parse()
+	log := flag.String("log", "erpass.log", "Log file")
+	daemon := flag.Bool("d", false, "run app as a daemon with -d=true or -d true.")
 
-	return host,port
+	if !flag.Parsed() {
+		flag.Parse()
+	}
+
+	return host,port,log,*daemon
+}
+
+func setLogFile(filename string) *os.File {
+	f, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+    if err != nil {
+    	f = os.Stdout
+	}
+	log.SetOutput(f)
+	// Set log format
+	log.SetFlags(log.Ldate)
+    return f
 }
 
 func main()  {
-	host,port := parserCommand()
+	host,port,logfile,daemon := parserCommand()
+
+	f := setLogFile(*logfile)
+	defer f.Close()
+
+	if daemon == true {
+		cmd := exec.Command(os.Args[0], flag.Args()[1:]...)
+		cmd.Start()
+		fmt.Printf("%s [PID] %d running...\n", os.Args[0], cmd.Process.Pid)
+		daemon = false
+		os.Exit(0)
+	}
+
+	initServer()
 
 	staticFileHandle := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", staticFileHandle))
 	http.HandleFunc("/", rootHandle)
+	http.HandleFunc("/doc", docHandle)
 	http.HandleFunc("/gen", generateSecretKeyHandle)
 	http.HandleFunc("/import", importHandle)
 	http.HandleFunc("/pass", passHandle)
