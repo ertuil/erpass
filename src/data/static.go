@@ -445,7 +445,7 @@ func templatesIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "templates/index.html", size: 7738, mode: os.FileMode(420), modTime: time.Unix(1561201723, 0)}
+	info := bindataFileInfo{name: "templates/index.html", size: 7738, mode: os.FileMode(420), modTime: time.Unix(1561202323, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -545,7 +545,7 @@ func readmeMd() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "ReadMe.md", size: 2548, mode: os.FileMode(420), modTime: time.Unix(1561181171, 0)}
+	info := bindataFileInfo{name: "ReadMe.md", size: 2548, mode: os.FileMode(420), modTime: time.Unix(1561202323, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
