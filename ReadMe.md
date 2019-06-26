@@ -33,15 +33,18 @@ You can set the 'Style', 'Length' and 'Count' options but you don't have to chan
 # Command Usage
 
 Erpass: A simple but security password generator.
-Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>]
-        --d    run app as a daemon with -d=true or -d true.
-        --host string
-                  HTTP listen IP address. (default "127.0.0.1")
-        --log string
-                  Log file (default "erpass.log")
-        --port string
-                  HTTP listen port (default "8080")
-        -h/--help Show this help.
+Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g account]
+
+	--d    run app as a daemon with -d=true or -d true.
+	--host string
+		  HTTP listen IP address. (default "127.0.0.1")
+	--log string
+		  Log file (default "erpass.log")
+	--port string
+		  HTTP listen port (default "8080")
+	-g  	generate a password in terminal.
+			Example:  erpass -g github.com
+	-h/--help Show this help.
 
 # Security Notice
 
