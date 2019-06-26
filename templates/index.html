@@ -10,6 +10,17 @@
               </div>
               <div class="container">
                 <form>
+                
+
+                  <br />
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="border-radius: 0;">Account</span>
+                    </div>
+                    <input class="form-control" name="account" id="account" oninput="generatePassword()" onporpertychange="generatePassword()"
+                          style="border-radius: 0;" placeholder="Website and your account"/>
+                  </div>
+
                   <br />
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -21,15 +32,6 @@
                       <button class="btn btn-success" onclick="checkMaster()"
                                 type="button" id="master-chk">Check</button>
                     </div>
-                  </div>
-
-                  <br />
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" style="border-radius: 0;">Account</span>
-                    </div>
-                    <input class="form-control" name="account" id="account" oninput="generatePassword()" onporpertychange="generatePassword()"
-                          style="border-radius: 0;" placeholder="Website and your account"/>
                   </div>
 
                   <br />
@@ -87,11 +89,15 @@
                   </div>
                   <br />
 
-                  <button type="button"  class="btn btn-success btn-block" 
+                  <!-- <button type="button"  class="btn btn-success btn-block" 
                     style="border-radius: 0;" 
                     onclick="generatePassword()">
                     Generate
-                  </button>
+                  </button> -->
+
+                  <button class="btn btn-primary btn-block" data-clipboard-text=""
+                  style="border-radius: 0;" 
+                  type="button" id="foo-btn">Copy</button>
 
                   <br/>
                 </form>
@@ -102,8 +108,6 @@
                     <div class="input-group-prepend">
                         <!-- <button class="btn btn-primary" data-clipboard-target="#foo"
                                 type="button" id="foo-btn">Copy</button> -->
-                        <button class="btn btn-primary" data-clipboard-text=""
-                                type="button" id="foo-btn">Copy</button>
                         <button class="btn btn-success" onclick="checkPassword()"
                                 type="button" id="foo-chk">Check</button>
                     </div>
