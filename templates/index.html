@@ -18,7 +18,12 @@
                         <span class="input-group-text" style="border-radius: 0;">Account</span>
                     </div>
                     <input class="form-control" name="account" id="account" oninput="generatePassword()" onporpertychange="generatePassword()"
-                          style="border-radius: 0;" placeholder="Website and your account"/>
+                          style="border-radius: 0;" placeholder="Website and your account" list="urls"/>
+                    <datalist id="urls">
+                      <option value="BMW">
+                      <option value="Ford">
+                      <option value="Volvo">
+                    </datalist>
                   </div>
 
                   <br />
@@ -135,6 +140,7 @@
 </div>
 
 <script>
+  getUrls();
   var clip = new ClipboardJS('#foo-btn');
   var state = false;
   var mastate = false;
@@ -159,6 +165,26 @@
     }
 
     xmlhttp.send(JSON.stringify(obj));
+  }
+
+  function getUrls(){
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET","/static/site.json",true);
+    xmlhttp.onreadystatechange=function(){
+      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+
+        urls = document.getElementById("urls");
+        obj = JSON.parse(xmlhttp.responseText);
+        for( u in obj["sites"]) {
+          tmp = document.createElement("option");
+          tmp.innerText = obj["sites"][u];
+          tmp.value  = obj["sites"][u];
+          urls.appendChild(tmp);
+        }
+      }
+    }
+    xmlhttp.send();
   }
 
   function checkPassword(){
