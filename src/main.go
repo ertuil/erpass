@@ -47,7 +47,8 @@ func restore() {
 
 func getUsage(){
 	st := `Erpass: A simple but security password generator.
-Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>]
+Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g account]
+
 	--d    run app as a daemon with -d=true or -d true.
 	--host string
 		  HTTP listen IP address. (default "127.0.0.1")
@@ -55,12 +56,14 @@ Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>]
 		  Log file (default "erpass.log")
 	--port string
 		  HTTP listen port (default "8080")
+	-g  	generate a password in terminal.
+			Example:  erpass -g github.com
 	-h/--help Show this help.
 	`
 	fmt.Println(st)
 }
 
-func parserCommand() (*string,*string,*string, bool) {
+func parserCommand() (*string,*string,*string, bool,*string) {
 	flag.Usage = getUsage
 	
 	host := flag.String("host", "127.0.0.1", "HTTP listen IP address.")
@@ -68,11 +71,13 @@ func parserCommand() (*string,*string,*string, bool) {
 	log := flag.String("log", "erpass.log", "Log file")
 	daemon := flag.Bool("d", false, "run app as a daemon with -d=true or -d true.")
 
+	ac := flag.String("g", "", "Generate the password in CLI, follewed the account")
+
 	if !flag.Parsed() {
 		flag.Parse()
 	}
 
-	return host,port,log,*daemon
+	return host,port,log,*daemon,ac
 }
 
 func setLogFile(filename string) *os.File {
@@ -87,7 +92,12 @@ func setLogFile(filename string) *os.File {
 }
 
 func main()  {
-	host,port,logfile,daemon := parserCommand()
+	host,port,logfile,daemon,ac := parserCommand()
+
+	if *ac != "" {
+		generateCLI(*ac)
+		os.Exit(0)
+	}
 
 	f := setLogFile(*logfile)
 	defer f.Close()

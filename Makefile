@@ -1,5 +1,5 @@
 build:
-	make static && make darwin && make test
+	make clean & make static && make darwin && make test
 
 .PHONY:clean static darwin test linux windows all 
 
