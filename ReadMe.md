@@ -32,6 +32,7 @@ You can set the 'Style', 'Length' and 'Count' options but you don't have to chan
 
 # Command Usage
 
+```
 Erpass: A simple but security password generator.
 Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g account]
 
@@ -44,7 +45,9 @@ Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g accou
 		  HTTP listen port (default "8082")
 	-g  	generate a password in terminal.
 			Example:  erpass -g github.com
+			Notice: a file, where the secret key is,called 'erpass.key' should exist in the folder
 	-h/--help Show this help.
+```
 
 # Security Notice
 

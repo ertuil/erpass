@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -21,6 +22,8 @@ func newlogHandle(w http.ResponseWriter, r *http.Request) {
 	maxage := maxageTable[ id ]
 	if checkSecretKey(sk) {
 		writeSecretKeyFromCookie(w,r,sk,maxage)
+	} else {
+		log.Println("[error]: error secret key format.")
 	}
 	http.Redirect(w, r, "/", http.StatusFound)
 }
