@@ -19,8 +19,9 @@ func newlogHandle(w http.ResponseWriter, r *http.Request) {
 		id = 0
 	}
 	maxage := maxageTable[ id ]
-	
-	writeSecretKeyFromCookie(w,r,sk,maxage)
+	if checkSecretKey(sk) {
+		writeSecretKeyFromCookie(w,r,sk,maxage)
+	}
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 

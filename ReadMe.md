@@ -37,21 +37,21 @@ Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g accou
 
 	--d    run app as a daemon with -d=true or -d true.
 	--host string
-		  HTTP listen IP address. (default "127.0.0.1")
+		  HTTP listen IP address. (default "0.0.0.0")
 	--log string
 		  Log file (default "erpass.log")
 	--port string
-		  HTTP listen port (default "8080")
+		  HTTP listen port (default "8082")
 	-g  	generate a password in terminal.
 			Example:  erpass -g github.com
 	-h/--help Show this help.
 
 # Security Notice
 
-1. As Erpass do not store anything, if you forget your Master Key or lose SecretKey (generate automatical when Erpass first boot), you may 
+1. As Erpass do not store anything, if you forget your Master Key or lose SecretKey (generate automatical when login), you may 
 never get a chance to retrive your passwords, please BACKUP the SecretKey( store in plain-text in 'erpass.key') and your MasterKey.
 
-2. SecretKey is stored in plain-text, the security of SecretKey is depending on the security of your machine.
+2. SecretKey is stored in plain-text, the security of SecretKey is depending on the security of your browser.
 
 3. A security channel (HTTPS) to provide the service is necessary, but Erpass do not provide HTTPS, use a NGINX or deploy Erpass in a trusted network environment.
 
