@@ -103,14 +103,21 @@ func readSecretKey() string{
 	return string(b)
 }
 
-func generatePassword(info map[string]string) string {
+func generatePassword(info map[string]string, sk string) string {
+
+	var salt []byte
+	if sk != "" {
+		salt = []byte(sk)
+	} else  {
+		salt = []byte(readSecretKey())
+	}
+	
 	lru := []string{
 		"abcdefjhigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
 		"abcdefjhigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-=_+[]{}<>,.",
 		"0123456789",
 		}
     pwd := []byte(info["mk"] + info["account"] + info["count"])
-    salt := []byte(readSecretKey())
     iterations := 15000
     digest := sha256.New
 

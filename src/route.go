@@ -73,7 +73,8 @@ func passHandle(w http.ResponseWriter, r *http.Request) {
 	}
 	js := make(map[string]string)
 	json.Unmarshal(result,&js)
-	w.Write([]byte(generatePassword(js)))
+	sk := readSecretKeyFromCookie(w,r)
+	w.Write([]byte(generatePassword(js, sk)))
 }
 
 func loginHandle(w http.ResponseWriter, r *http.Request) {
