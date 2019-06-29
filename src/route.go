@@ -38,7 +38,9 @@ func generateSecretKeyHandle(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
-	ret := generateSecretKey();
+	sk := generateSecretKey()
+	ret := writeSecretKey(sk)
+
 	if (ret == true) {
 		Installed = true
 	}
@@ -71,14 +73,32 @@ func passHandle(w http.ResponseWriter, r *http.Request) {
 	}
 	js := make(map[string]string)
 	json.Unmarshal(result,&js)
-	w.Write([]byte(generatePassword(js)))
+	sk := readSecretKeyFromCookie(w,r)
+	w.Write([]byte(generatePassword(js, sk)))
+}
+
+func loginHandle(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("templates/login.html",
+	"templates/public/header.html",
+	"templates/public/title.html", 
+	"templates/public/footer.html")
+
+	if err := t.Execute(w,map[string]string{});err != nil {
+		log.Println("[error]: parser template error in initHandle")
+	}
 }
 
 // Index page
 func rootHandle(w http.ResponseWriter, r *http.Request) {
-	if ( !Installed ) {
-		// send to initial handle
-		initHandle(w,r)
+	// if ( !Installed ) {
+	// 	// send to initial handle
+	// 	initHandle(w,r)
+	// } else {
+	// 	indexHandle(w,r)
+	// }
+	ret := isExistSecretKeyFromCookie(w,r)
+	if ret == false {
+		loginHandle(w,r)
 	} else {
 		indexHandle(w,r)
 	}

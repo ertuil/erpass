@@ -1,0 +1,70 @@
+{{template "header" .}} 
+{{template "title" .}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+                <div class="card" style="border-radius: 0;width: 80%;">
+                    <div class="card-header">
+                        Login with Secret Key
+                    </div>
+                    <div class="container">
+                        <form action="/login" method="POST">
+                            <br/>
+                            <br/>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" style="border-radius: 0;" name="sk" id="sk">
+                                <div class="input-group-prepend" style="border-radius: 0;">
+                                    <button class="btn btn-success btn-block" onclick="generateSecretKey()" type="button">generate</button>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-radius: 0;">Remember me</span>
+                                </div>
+                                <select multiple class="form-control" name="maxage" id="maxage" 
+                                    style="border-radius: 0px;height: 38px;">
+                                    <option value="0" >0.5 hour</option>
+                                    <option value="1" >1 hour</option>
+                                    <option value="2" >3 hours</option>
+                                    <option value="3" >12 hours</option>
+                                    <option value="4" >1 day</option>
+                                    <option value="5" >3 day</option>
+                                    <option value="6" >7 day</option>
+                                    <option value="7" selected>15 days</option>
+                                    <option value="8" >30 day</option>
+                                    <option value="9" >60 day</option>
+                                    <option value="10" >120 day</option>
+                                    <option value="11" >365 day</option>
+                                    <option value="12" >trust this browser forever</option>
+                                </select>
+                            </div>
+                            <br />
+                                <button class="btn btn-primary btn-block"
+                                    style="border-radius: 0;"  type="submit" >Login</button>
+                            <br />
+                        </form> 
+                    </div>
+                </div>
+        </div>
+        <div class="col-md">
+            Need to login with a secret key or Generate a new secret key
+        </div>
+    </div>
+</div>
+
+<script>
+    function generateSecretKey() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","/gensk",true);
+
+        xmlhttp.onreadystatechange=function(){
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+              document.getElementById("sk").value=xmlhttp.responseText;
+          }
+        }
+        xmlhttp.send();
+    }
+</script>
+{{template "footer" .}} 

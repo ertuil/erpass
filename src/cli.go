@@ -24,6 +24,6 @@ func generateCLI(ac string) {
 	js["length"]  = "16"
 	js["count"]  = "1"
 	js["style"]  = "1"
-	pa :=  generatePassword(js)
+	pa :=  generatePassword(js,"")
 	fmt.Println(pa)
 }

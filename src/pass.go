@@ -9,6 +9,7 @@ import (
 	"strings"
 	"io/ioutil"  
 	"strconv"
+	"net/http"
 	"crypto/sha256"
 	"encoding/binary"
 	"golang.org/x/crypto/pbkdf2"
@@ -18,16 +19,42 @@ const(
 	filename = "erpass.key"
 )
 
-func generateSecretKey() bool {
+func isExistSecretKeyFromCookie(w http.ResponseWriter,r *http.Request) bool{
+	_, err := r.Cookie("sk")
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+func readSecretKeyFromCookie(w http.ResponseWriter,r *http.Request) string{
+	cookie, err := r.Cookie("sk")
+	if err != nil {
+		return ""
+	} 
+	return cookie.Value
+}
+
+func writeSecretKeyFromCookie(w http.ResponseWriter,r *http.Request, sk string, maxage  int) {
+	cookie := http.Cookie{Name: "sk", Value: sk, Path: "/", MaxAge: maxage}
+    http.SetCookie(w, &cookie)
+}
+
+func deleteSecretKeyFromCookie(w http.ResponseWriter,r *http.Request) {
+	cookie := http.Cookie{Name: "sk", Path: "/", MaxAge: -1}
+    http.SetCookie(w, &cookie)
+}
+
+func generateSecretKey() string {
 	t := time.Now().UnixNano()
 	h := sha256.New()
 	io.WriteString(h, strconv.FormatInt(t, 10)) 
 	token := fmt.Sprintf("%x", h.Sum(nil)) 
 	log.Println("[warning]:Gernerate a secret key:",token);
-	return writeSecretKey(token)
+	return token
 }
 
-func importSecretKey(sk string) bool {
+func  checkSecretKey(sk string) bool {
 	sk = strings.ToLower(sk)
 	if len(sk) != 64 {
 		return false
@@ -39,8 +66,16 @@ func importSecretKey(sk string) bool {
 			return false
 		}
 	}
-	writeSecretKey(sk)
-	return true;
+	return true
+}
+
+func importSecretKey(sk string) bool {
+	sk = strings.ToLower(sk)
+	ret := checkSecretKey(sk)
+	if ret == false {
+		return false 
+	}
+	return writeSecretKey(sk);
 }
 
 func writeSecretKey(sk string) bool {
@@ -68,14 +103,21 @@ func readSecretKey() string{
 	return string(b)
 }
 
-func generatePassword(info map[string]string) string {
+func generatePassword(info map[string]string, sk string) string {
+
+	var salt []byte
+	if sk != "" {
+		salt = []byte(sk)
+	} else  {
+		salt = []byte(readSecretKey())
+	}
+	
 	lru := []string{
 		"abcdefjhigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
 		"abcdefjhigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-=_+[]{}<>,.",
 		"0123456789",
 		}
     pwd := []byte(info["mk"] + info["account"] + info["count"])
-    salt := []byte(readSecretKey())
     iterations := 15000
     digest := sha256.New
 
