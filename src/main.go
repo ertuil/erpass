@@ -40,10 +40,6 @@ func restore() {
 	if err := data.RestoreAssets("./", "templates"); err != nil {
 		log.Println("[error]: Resotre template files failed.")
 	}
-	
-	if err := data.RestoreAssets("./", "ReadMe.md"); err != nil {
-		log.Println("[error]: Resotre readme files failed.")
-    }
 }
 
 func getUsage(){
@@ -59,6 +55,7 @@ Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g accou
 		  HTTP listen port (default "8080")
 	-g  	generate a password in terminal.
 			Example:  erpass -g github.com
+			Notice: a file, where the secret key is,called 'erpass.key' should exist in the folder
 	-h/--help Show this help.
 	`
 	fmt.Println(st)
