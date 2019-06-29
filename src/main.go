@@ -23,12 +23,13 @@ func initServer() {
 		restore() // release static files
 	}
 
-	if _,err := os.Stat("./erpass.key"); err == nil {
-		Installed = true
-	} else {
-		log.Println("[warning]: erpass.key is not installed.")
-		Installed = false
-	}
+	// if _,err := os.Stat("./erpass.key"); err == nil {
+	// 	Installed = true
+	// } else {
+	// 	log.Println("[warning]: erpass.key is not installed.")
+	// 	Installed = false
+	// }
+	Installed = true
 }
 
 func restore() {
@@ -66,8 +67,8 @@ Usage: erpass [-h][-d true][-host <host>][-port <port>][-log <logfile>][-g accou
 func parserCommand() (*string,*string,*string, bool,*string) {
 	flag.Usage = getUsage
 	
-	host := flag.String("host", "127.0.0.1", "HTTP listen IP address.")
-	port := flag.String("port", "8080", "HTTP listen port")
+	host := flag.String("host", "0.0.0.0", "HTTP listen IP address.")
+	port := flag.String("port", "8082", "HTTP listen port")
 	log := flag.String("log", "erpass.log", "Log file")
 	daemon := flag.Bool("d", false, "run app as a daemon with -d=true or -d true.")
 
@@ -115,7 +116,10 @@ func main()  {
 	staticFileHandle := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", staticFileHandle))
 	http.HandleFunc("/", rootHandle)
+	http.HandleFunc("/login", newlogHandle)
+	http.HandleFunc("/logout", newExitHandle)
 	http.HandleFunc("/doc", docHandle)
+	http.HandleFunc("/gensk", newgenHandle)
 	http.HandleFunc("/gen", generateSecretKeyHandle)
 	http.HandleFunc("/import", importHandle)
 	http.HandleFunc("/pass", passHandle)
