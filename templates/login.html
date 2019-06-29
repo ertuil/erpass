@@ -49,7 +49,18 @@
                 </div>
         </div>
         <div class="col-md">
-            Need to login with a secret key or Generate a new secret key
+                <h3 class="display-4">Login</h3>
+                <p class="display-5">
+                        A secret key is used as a two-factor authentication to generate passwords. 
+                        With different secret keys, erpass server is supposed to generate different passwords 
+                        even thought master keys and options are the same.
+                        It should be generated when login or be imported 
+                        if you want to generate the same password. 
+                    </p>
+                    <p>
+                        The generator makes use of timestamps and SHA-256 to produce a new secret key which means 
+                        a secret should be a 64 bytes string looks like 4355a4...0f3c9ee954a27460dd865.
+                    </p>
         </div>
     </div>
 </div>
